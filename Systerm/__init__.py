@@ -10,3 +10,4 @@ from Systerm.module import Module
 from Systerm.module import modules
 
 from Systerm import module
+from Systerm import instance
