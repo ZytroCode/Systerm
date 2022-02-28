@@ -9,13 +9,28 @@ modules = sys.modules
 class Module(sys.modules[__name__].__class__):
 	"""Module class is used for creating a python module
 	If you don't want an attribute to be in the module, use __ before the name of the attribute"""
+	_attrs = {}
+	_hidden_prefixs = ["_"]
+	_hidden_items = []
+
 	def __init__(self, name):
 		super().__init__(name)
 		for attr in dir(self):
-			if len(attr) <= 2:
+			if self._not_hidden(attr):
 				setattr(self, attr, getattr(self, attr))
-			elif attr[0] != "_" and attr[1] != "_":
-				setattr(self, attr, getattr(self, attr))
+
+	def __dir__(self):
+		return [attr for attr in dir(self.__class__) if self._not_hidden(attr)]
+
+	def _not_hidden(self, item):
+		hidden = item in self._hidden_items
+		if hidden: return False
+		for prefix in self._hidden_prefixs:
+			if item.startswith(prefix):
+				hidden = True
+				break
+
+		return not hidden
 
 # Add function
 def add(*args):
