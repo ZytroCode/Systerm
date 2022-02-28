@@ -39,13 +39,14 @@ def add(*args):
 
 	if len(args) == 2:
 		try:
-			sys.modules[args[1]] = args[0](args[1])
+			sys.modules[args[1]].__class__ = args[0]
 			return args[0](args[1])
-		except TypeError:
+		except TypeError as e:
+			print(e)
 			error = TypeError(f"add() takes 2 positional arguments but {len(args) + 1} were given")
 	elif len(args) == 1:
 		def wrapper(module):
-			sys.modules[args[0]] = module(args[0])
+			sys.modules[args[0]].__class__ = module
 			return module
 		return wrapper
 	elif len(args) == 0:
@@ -53,3 +54,11 @@ def add(*args):
 	elif len(args) >= 3:
 		error = TypeError(f"add() takes 2 positional arguments but {len(args)} were given")
 	raise error
+
+# ModuleMod
+@add(__name__)
+class ModuleMod(Module):
+	"""Module class for Systerm.module"""
+	add = add
+	modules = modules
+	Module = Module
