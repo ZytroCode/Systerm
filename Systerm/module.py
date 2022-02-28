@@ -2,6 +2,9 @@
 import Systerm
 import sys
 
+# Modules
+modules = sys.modules
+
 # Module class
 class Module(sys.modules[__name__].__class__):
 	"""Module class is used for creating a python module
