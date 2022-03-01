@@ -35,3 +35,21 @@ class VersionMod(Systerm.Module):
 			return list(self)[2]
 
 	version = __version__ = Version("0.2.0")
+
+	def __getattr__(self, name):
+		try:
+			return super().__getattr__(name)
+		except Exception as e:
+			try:
+				return getattr(self.version, name)
+			except AttributeError:
+				raise e
+
+	def __str__(self):
+		return self.version.__str__()
+
+	def __int__(self):
+		return self.version.__int__()
+
+	def __iter__(self):
+		return self.version.__iter__()
