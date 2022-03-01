@@ -11,3 +11,13 @@ class VersionMod(Systerm.Module):
 		"""Class for an object to store a version"""
 		def __init__(self, version):
 			self.version = version
+
+		def __str__(self):
+			return self.version
+
+		def __int__(self):
+			return int(self.version.replace(".", ""))
+
+		def __iter__(self):
+			for i in self.version.split("."):
+				yield i
