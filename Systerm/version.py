@@ -21,3 +21,15 @@ class VersionMod(Systerm.Module):
 		def __iter__(self):
 			for i in self.version.split("."):
 				yield i
+
+		@property
+		def major(self):
+			return list(self)[0]
+
+		@property
+		def minor(self):
+			return list(self)[1]
+
+		@property
+		def micro(self):
+			return list(self)[2]
