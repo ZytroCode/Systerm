@@ -6,4 +6,8 @@ import Systerm
 @Systerm.module.add(__name__)
 class VersionMod(Systerm.Module):
 	"""Module class for Systerm.version"""
-	pass
+	# Version
+	class Version():
+		"""Class for an object to store a version"""
+		def __init__(self, version):
+			self.version = version
