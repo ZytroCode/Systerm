@@ -11,10 +11,11 @@ from Systerm.module import modules
 
 from Systerm import module
 from Systerm import instance
+from Systerm import version
 
 # SystermMod
 @module.add(__name__)
 @instance.super(modules[__name__])
 class SystermMod(Module):
 	"""Module class for Systerm"""
-	pass
+	__version__ = version
