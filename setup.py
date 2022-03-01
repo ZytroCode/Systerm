@@ -20,11 +20,6 @@ CLASSIFIERS = [
 
 # Metadata
 METADATA = dict(
-	name =			"Systerm",
-	version =		"0.1.0",
-	description =	"A multipurpose python library",
-	author =		"ZytroCode",
-	packages =		find_packages(),
 	name =							"Systerm",
 	version =						"0.2.0",
 	description =					"A multipurpose python library",
