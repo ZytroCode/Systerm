@@ -33,3 +33,5 @@ class VersionMod(Systerm.Module):
 		@property
 		def micro(self):
 			return list(self)[2]
+
+	version = __version__ = Version("0.2.0")
