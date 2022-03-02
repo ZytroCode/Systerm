@@ -6,10 +6,10 @@ import Systerm
 class InstanceMod(Systerm.Module):
 	"""Module class for Systerm.instance"""
 	# Super function
-	def super(self, instance):
-		"""Inherits an instance to a class"""
-		def wrapper(cls):
+	def super(self, instance: object) -> object:
+		"""Inherits an instance to an object"""
+		def wrapper(obj):
 			for attr in dir(instance):
-				setattr(cls, attr, getattr(instance, attr))
-			return cls
+				setattr(obj, attr, getattr(instance, attr))
+			return obj
 		return wrapper

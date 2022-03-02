@@ -18,4 +18,4 @@ from Systerm import version
 @instance.super(modules[__name__])
 class SystermMod(Module):
 	"""Module class for Systerm"""
-	__version__ = version
+	__version__: version.Version = version
