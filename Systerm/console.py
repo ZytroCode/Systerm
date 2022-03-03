@@ -12,3 +12,8 @@ class ConsoleMod(Systerm.Module):
 	def flush(self) -> None:
 		"""Forces to flush the buffer"""
 		sys.stdout.flush()
+	
+	def send(self, value: object) -> None:
+		"""More like print but simpler"""
+		self.write(value)
+		self.flush()
