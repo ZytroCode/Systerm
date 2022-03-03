@@ -7,10 +7,18 @@ import time
 @Systerm.instance.super(time)
 class TimeMod(Systerm.Module):
 	"""Module class for Systerm.time"""
-	def get(self):
+	def get(self) -> float:
+		"""
+		Return the current time in seconds since the Epoch.
+		Fractions of a second may be present if the system clock provides them.
+		"""
 		return self.time()
 	
-	def __call__(self):
+	def __call__(self) -> float:
+		"""
+		Return the current time in seconds since the Epoch.
+		Fractions of a second may be present if the system clock provides them.
+		"""
 		return self.time()
 
 del time
