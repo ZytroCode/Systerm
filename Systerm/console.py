@@ -17,3 +17,9 @@ class ConsoleMod(Systerm.Module):
 		"""More like print but simpler"""
 		self.write(value)
 		self.flush()
+	
+	def scan(self, prompt: Any) -> str:
+		"""More like input but simpler"""
+		self.send(prompt)
+		for line in sys.stdin:
+			return line.strip()
