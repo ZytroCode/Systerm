@@ -5,7 +5,6 @@ import Systerm
 @Systerm.module.add(__name__)
 class InstanceMod(Systerm.Module):
 	"""Module class for Systerm.instance"""
-	# Super function
 	def super(self, instance: object) -> object:
 		"""Inherits an instance to an object"""
 		def wrapper(obj):
