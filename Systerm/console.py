@@ -8,3 +8,7 @@ class ConsoleMod(Systerm.Module):
 	def write(self, value: object) -> None:
 		"""Writes a value to the stream"""
 		sys.stdout.write(str(value))
+	
+	def flush(self) -> None:
+		"""Forces to flush the buffer"""
+		sys.stdout.flush()
