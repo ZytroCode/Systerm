@@ -9,5 +9,8 @@ class TimeMod(Systerm.Module):
 	"""Module class for Systerm.time"""
 	def get(self):
 		return self.time()
+	
+	def __call__(self):
+		return self.time()
 
 del time
