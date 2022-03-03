@@ -1,6 +1,9 @@
 """Console is used for interpreting the stream"""
 import Systerm
 import sys
+import os
+
+from typing import Any
 
 @Systerm.module.add(__name__)
 class ConsoleMod(Systerm.Module):
@@ -23,3 +26,7 @@ class ConsoleMod(Systerm.Module):
 		self.send(prompt)
 		for line in sys.stdin:
 			return line.strip()
+		
+	def call(self, command: str) -> int:
+		"""Execute a command in a subshell"""
+		return os.system(command)
