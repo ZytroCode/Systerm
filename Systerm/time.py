@@ -7,5 +7,7 @@ import time
 @Systerm.instance.super(time)
 class TimeMod(Systerm.Module):
 	"""Module class for Systerm.time"""
+	def get(self):
+		return self.time()
 
 del time
