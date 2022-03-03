@@ -34,8 +34,8 @@ class VersionMod(Systerm.Module):
 		def micro(self) -> str:
 			return list(self)[2]
 
-	version: str = Version("0.2.1")
-	__version__: str = Version("0.2.1")
+	version: str = Version("0.2.0")
+	__version__: str = Version("0.2.0")
 
 	def __getattr__(self, name: str) -> object:
 		try:
