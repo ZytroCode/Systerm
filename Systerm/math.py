@@ -7,3 +7,5 @@ import math
 @Systerm.instance.super(math)
 class MathMod(Systerm.Module):
 	"""Module class for Systerm.math"""
+
+del
