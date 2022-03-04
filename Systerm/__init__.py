@@ -24,6 +24,7 @@ from Systerm.version import Version
 class SystermMod(Module):
 	"""Module class for Systerm"""
 	__version__: version.Version = version
+	_old_builtins = {}
 
 	def get_installed(self) -> bool:
 		"""Returns True if Systerm is installed in runtime"""
