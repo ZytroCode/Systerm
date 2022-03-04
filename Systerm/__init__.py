@@ -12,6 +12,10 @@ from Systerm import instance
 from Systerm import version
 from Systerm import console
 from Systerm import time
+from Systerm import math
+from Systerm import exit
+
+from Systerm.version import Version
 
 # SystermMod
 @module.add(__name__)
