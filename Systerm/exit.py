@@ -10,5 +10,8 @@ class ExitMod(Systerm.Module):
 	"""Module class for Systerm.Exit"""
 	def exit(self, msg=None):
 		sys.exit(msg)
+	
+	def __call__(self, msg=None):
+		self.exit(msg)
 
 del atexit
