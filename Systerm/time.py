@@ -1,4 +1,4 @@
-"""This module is a copy of the python time module"""
+"""This module is a copy of the python's time module"""
 import Systerm
 import time
 
@@ -7,6 +7,8 @@ import time
 @Systerm.instance.super(time)
 class TimeMod(Systerm.Module):
 	"""Module class for Systerm.time"""
+	import datetime as date
+
 	def get(self) -> float:
 		"""
 		Return the current time in seconds since the Epoch.
