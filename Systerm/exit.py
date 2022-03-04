@@ -11,6 +11,11 @@ class ExitMod(Systerm.Module):
 	def exit(self, msg=None):
 		sys.exit(msg)
 	
+	@atexit.register
+	def _at_exit() -> None:
+		if Systerm.get_installed():
+			Systerm.uninstall()
+	
 	def __call__(self, msg=None):
 		self.exit(msg)
 
