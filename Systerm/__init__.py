@@ -38,7 +38,10 @@ class SystermMod(Module):
 
 	def install(self) -> None:
 		"""Installing the Systerm module by overriding the python's builtins module"""
-		pass
+		for index, value in self._overide_objects.items():
+			self._old_builtins[index] = getattr(builtins, index)
+			setattr(builtins, index, value)
+	
 	def uninstall(self) -> None:
 		"""Undoing the installation of Systerm"""
 		pass
