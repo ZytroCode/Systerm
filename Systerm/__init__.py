@@ -26,3 +26,6 @@ class SystermMod(Module):
 	def install(self) -> None:
 		"""Installing the Systerm module by overriding the python's builtins module"""
 		pass
+	def uninstall(self) -> None:
+		"""Undoing the installation of Systerm"""
+		pass
