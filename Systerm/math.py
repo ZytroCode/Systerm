@@ -8,4 +8,4 @@ import math
 class MathMod(Systerm.Module):
 	"""Module class for Systerm.math"""
 
-del
+del math
