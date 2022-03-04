@@ -23,3 +23,6 @@ from Systerm.version import Version
 class SystermMod(Module):
 	"""Module class for Systerm"""
 	__version__: version.Version = version
+	def install(self) -> None:
+		"""Installing the Systerm module by overriding the python's builtins module"""
+		pass
