@@ -10,10 +10,12 @@ modules: dict = sys.modules
 
 # Module class
 class Module(sys.modules[__name__].__class__):
+class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 	"""Module class is used for creating a python module"""
 	def __init__(self, name: str) -> None:
 		super().__init__(name)
 		for attr in dir(self):
+			if name in self.__public__:
 				setattr(self, attr, getattr(self, attr))
 
 	def __dir__(self) -> list:
