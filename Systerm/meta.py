@@ -77,3 +77,19 @@ class Object(object, metaclass=Metaclass):
 # List class
 class List(list, metaclass=Metaclass):
 	pass
+
+# Dictionary class
+class Dictionary(dict, metaclass=Metaclass):
+	"""Replacement for the python's builtin dict"""
+
+	def __getattr__(self, name: str) -> None:
+		try:
+			return self[name]
+		except KeyError as e:
+			try:
+				return super().__getattr__(name)
+			except AttributeError:
+				raise e
+	
+	def __setattr__(self, name: str, value: object) -> None:
+		self[name] = value
