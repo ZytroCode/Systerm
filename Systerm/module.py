@@ -19,12 +19,11 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 	
 	@staticmethod
 	def super(*instances):
-		cls = Module("_")
+		cls = meta.Metaclass("_", (Module,), dict())
+
 		for instance in instances:
 			for name in dir(instance):
 				setattr(cls, name, getattr(instance, name))
-			for name in dir(cls):
-				setattr(cls.__class__, name, getattr(instance, name, None))
 		
 		return cls
 
