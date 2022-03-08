@@ -9,7 +9,6 @@ from Systerm.module import Module
 from Systerm.module import modules
 
 from Systerm import module
-from Systerm import instance
 from Systerm import version
 from Systerm import console
 from Systerm import time
