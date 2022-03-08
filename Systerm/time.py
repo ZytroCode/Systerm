@@ -1,14 +1,11 @@
 """This module is a copy of the python's time module"""
 import Systerm
 import time
+import datetime as date
 
 # TimeMod
-@Systerm.module.add(__name__)
-@Systerm.instance.super(time)
-class TimeMod(Systerm.Module):
+class TimeMod(Systerm.module.Module.super(date, time)):
 	"""Module class for Systerm.time"""
-	import datetime as date
-
 	def get(self) -> float:
 		"""
 		Return the current time in seconds since the Epoch.
@@ -24,3 +21,4 @@ class TimeMod(Systerm.Module):
 		return self.time()
 
 del time
+Systerm.module.modules[__name__].__class__ = TimeMod
