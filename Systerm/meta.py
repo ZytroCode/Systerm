@@ -101,6 +101,8 @@ class Dictionary(dict, metaclass=Metaclass):
 # Recreating ABC
 ABC = Metaclass(ABC.__name__, ABC.__bases__, {name: getattr(ABC, name) for name in dir(ABC)})
 
+def get_namespaces(object: Object):
+	return object.__namespaces__
 # Initializing Systerm.module
 from Systerm._setup import init_module
 module = init_module()
