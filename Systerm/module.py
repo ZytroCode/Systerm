@@ -9,7 +9,6 @@ meta = _setup.init_meta()
 modules: dict = sys.modules
 
 # Module class
-class Module(sys.modules[__name__].__class__):
 class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 	"""Module class is used for creating a python module"""
 	def __init__(self, name: str) -> None:
@@ -33,9 +32,5 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 		return self.__attributes__
 
 # ModuleMod
-@add(__name__)
 class ModuleMod(Module):
 	"""Module class for Systerm.module"""
-	add = add
-	modules = modules
-	Module = Module
