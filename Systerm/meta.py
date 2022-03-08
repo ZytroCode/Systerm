@@ -1,5 +1,11 @@
 """Meta is a module contains objects that will customize the behavior of python"""
 import Systerm
+import sys
+
+from abc import ABC, ABCMeta
+from abc import abstractmethod
+from functools import wraps
+from typing import Callable
 
 # Metaclass
 class Metaclass(ABCMeta):
