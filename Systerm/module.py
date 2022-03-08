@@ -2,6 +2,9 @@
 import Systerm
 import sys
 
+from Systerm import _setup
+meta = _setup.init_meta()
+
 # Modules
 modules: dict = sys.modules
 
