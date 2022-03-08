@@ -4,7 +4,7 @@ import sys
 import atexit
 
 # ExitMod
-class ExitMod(Systerm.module.Module.super(atexit).__class__):
+class ExitMod(Systerm.module.Module.super(atexit)):
 	"""Module class for Systerm.Exit"""
 	def __call__(self, msg=None):
 		self.exit(msg)
@@ -12,7 +12,7 @@ class ExitMod(Systerm.module.Module.super(atexit).__class__):
 	def exit(self, msg=None):
 		sys.exit(msg)
 	
-	@register
+	@atexit.register
 	def _() -> None:
 		if Systerm.get_installed():
 			Systerm.uninstall()
