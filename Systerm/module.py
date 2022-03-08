@@ -30,18 +30,7 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 		return cls
 
 	def __dir__(self) -> list:
-		return [attr for attr in dir(self.__class__) if self._not_hidden(attr)]
-
-	def _not_hidden(self, item) -> bool:
-		hidden = item in self._hidden_items
-		if hidden: return False
-		for prefix in self._hidden_prefixs:
-			if item.startswith(prefix):
-				hidden = True
-				break
-
-		return not hidden
-
+		return self.__attributes__
 
 # ModuleMod
 @add(__name__)
