@@ -58,3 +58,5 @@ class ConsoleMod(Systerm.module.Module):
 	def call(self, command: str) -> int:
 		"""Execute a command in a subshell"""
 		return os.system(command)
+
+Systerm.module.modules[__name__].__class__ = ConsoleMod
