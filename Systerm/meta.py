@@ -99,3 +99,6 @@ class Dictionary(dict, metaclass=Metaclass):
 	
 	def __setattr__(self, name: str, value: object) -> None:
 		self[name] = value
+
+# Recreating ABC
+ABC = Metaclass(ABC.__name__, ABC.__bases__, {name: getattr(ABC, name) for name in dir(ABC)})
