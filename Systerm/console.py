@@ -12,6 +12,15 @@ class ConsoleMod(Systerm.Module):
 	def write(self, value: object) -> None:
 		"""Writes a value to the stream"""
 		sys.stdout.write(str(value))
+# Log formats
+formats: dict = dict(
+	Systerm = "[%(name)s] %(msg)s",
+	basic = "%(msg)s",
+)
+
+# BaseLogger class
+class BaseLogger(object):
+	"""Low level logging"""
 	
 	def flush(self) -> None:
 		"""Forces to flush the buffer"""
