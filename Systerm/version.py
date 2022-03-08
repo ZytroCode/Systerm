@@ -3,8 +3,7 @@ This can also be used to create a version of something of yours"""
 import Systerm
 
 # VersionMod
-@Systerm.module.add(__name__)
-class VersionMod(Systerm.Module):
+class VersionMod(Systerm.module.Module):
 	"""Module class for Systerm.version"""
 	# Version
 	class Version(object):
@@ -54,3 +53,5 @@ class VersionMod(Systerm.Module):
 
 	def __iter__(self) -> iter:
 		return self.version.__iter__()
+
+Systerm.module.modules[__name__].__class__ = VersionMod
