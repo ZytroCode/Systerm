@@ -63,3 +63,5 @@ class SystermMod(Module):
 		"""Undoing the installation of Systerm"""
 		for name, _ in self.extensions.items():
 			delattr(modules["builtins"], name)
+
+modules[__name__].__class__ = SystermMod
