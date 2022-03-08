@@ -17,6 +17,32 @@ class Metaclass(ABCMeta):
 		cls.__public__ = {}
 		cls.__private__ = {}
 		cls.__protected__ = {}
+
+		# Setting objects
+		for name in dir(cls):
+			value = getattr(cls, name)
+
+			# Adds attributes to __magics__
+			if name.startswith("__") and name.endswith("__"):
+				cls.__magics__[name] = value
+
+			# Adds attributes to other namespace
+			else:
+				# Adds attributes to __private__
+				if name.startswith("__"):
+					cls.__private__[name] = value
+				
+				# Adds attributes to __protected__
+				elif name.startswith("_"):
+					cls.__protected__[name] = value
+				# Adds attributes to __public__
+				else:
+					cls.__public__[name] = value
+				
+				cls.__attributes__[name] = value
+			
+			# Adds attributes to namespace
+			cls.__namespace__[name] = value
 		
 		return cls
 
