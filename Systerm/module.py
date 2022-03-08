@@ -14,7 +14,7 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 	def __init__(self, name: str) -> None:
 		super().__init__(name)
 		for attr in dir(self):
-			if name in self.__public__:
+			if name in self.__namespaces__:
 				setattr(self, attr, getattr(self, attr))
 	
 	@staticmethod
@@ -28,7 +28,7 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 		return cls
 
 	def __dir__(self) -> list:
-		return self.__attributes__
+		return self.__namespaces__
 
 # ModuleMod
 class ModuleMod(Module):

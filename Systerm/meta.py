@@ -10,19 +10,18 @@ from typing import Callable
 # Metaclass
 class Metaclass(ABCMeta):
 	"""A metaclass to customize the behavior of all classes"""
-
 	def __new__(self, name: str, bases: tuple, attrs: dict, **keys) -> type:
 		# Creating a new class
 		cls = super().__new__(self, name, bases, dict(attrs))
 		cls.__setattr__ = self.setattr
 
 		# Custom magic methods
-		cls.__namespace__ = {}
+		cls.__namespaces__ = {}
 		cls.__magics__ = {}
 		cls.__attributes__ = {}
-		cls.__public__ = {}
-		cls.__private__ = {}
-		cls.__protected__ = {}
+		cls.__publics__ = {}
+		cls.__privates__ = {}
+		cls.__protecteds__ = {}
 
 		# Setting objects
 		for name in dir(cls):
@@ -34,21 +33,21 @@ class Metaclass(ABCMeta):
 
 			# Adds attributes to other namespace
 			else:
-				# Adds attributes to __private__
+				# Adds attributes to __privates__
 				if name.startswith("__"):
-					cls.__private__[name] = value
+					cls.__privates__[name] = value
 				
-				# Adds attributes to __protected__
+				# Adds attributes to __protecteds__
 				elif name.startswith("_"):
-					cls.__protected__[name] = value
-				# Adds attributes to __public__
+					cls.__protecteds__[name] = value
+				# Adds attributes to __publics__
 				else:
-					cls.__public__[name] = value
+					cls.__publics__[name] = value
 				
 				cls.__attributes__[name] = value
 			
 			# Adds attributes to namespace
-			cls.__namespace__[name] = value
+			cls.__namespaces__[name] = value
 		
 		return cls
 
@@ -59,22 +58,22 @@ class Metaclass(ABCMeta):
 		
 		# Adds attributes to other namespace
 		else:
-			# Adds attributes to __private__
+			# Adds attributes to __privates__
 			if name.startswith("__"):
-				self.__private__[name] = value
+				self.__privates__[name] = value
 			
-			# Adds attributes to __protected__
+			# Adds attributes to __protecteds__
 			elif name.startswith("_"):
-				self.__protected__[name] = value
+				self.__protecteds__[name] = value
 			
-			# Adds attributes to __public__
+			# Adds attributes to __publics__
 			else:
-				self.__public__[name] = value
+				self.__publics__[name] = value
 			
 			self.__attributes__[name] = value
 		
 		# Adds attributes to namespace
-		self.__namespace__[name] = value
+		self.__namespaces__[name] = value
 
 # Object class
 class Object(object, metaclass=Metaclass):
@@ -87,7 +86,6 @@ class List(list, metaclass=Metaclass):
 # Dictionary class
 class Dictionary(dict, metaclass=Metaclass):
 	"""Replacement for the python's builtin dict"""
-
 	def __getattr__(self, name: str) -> None:
 		try:
 			return self[name]
