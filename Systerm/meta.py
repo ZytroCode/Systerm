@@ -106,3 +106,9 @@ ABC = Metaclass(ABC.__name__, ABC.__bases__, {name: getattr(ABC, name) for name 
 # Initializing Systerm.module
 from Systerm._setup import init_module
 module = init_module()
+
+# MetaMod class
+class MetaMod(module.Module):
+	"""MetaMod class will handle the behavior of Systerm.meta"""
+
+module.modules[__name__].__class__ = MetaMod
