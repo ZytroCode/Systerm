@@ -11,14 +11,9 @@ modules: dict = sys.modules
 # Module class
 class Module(sys.modules[__name__].__class__):
 	"""Module class is used for creating a python module"""
-	_attrs: dict = {}
-	_hidden_prefixs: list = ["_"]
-	_hidden_items: list = []
-
 	def __init__(self, name: str) -> None:
 		super().__init__(name)
 		for attr in dir(self):
-			if self._not_hidden(attr):
 				setattr(self, attr, getattr(self, attr))
 
 	def __dir__(self) -> list:
