@@ -3,9 +3,7 @@ import Systerm
 import math
 
 # MathMod
-@Systerm.module.add(__name__)
-@Systerm.instance.super(math)
-class MathMod(Systerm.Module):
+class MathMod(Systerm.module.Module.super(math)):
 	"""Module class for Systerm.math"""
 
-del math
+Systerm.module.modules[__name__].__class__ = MathMod
