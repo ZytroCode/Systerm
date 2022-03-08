@@ -61,5 +61,5 @@ class SystermMod(Module):
 	
 	def uninstall(self) -> None:
 		"""Undoing the installation of Systerm"""
-		for index, value in self._old_builtins.items():
-			setattr(builtins, index, value)
+		for name, _ in self.extensions.items():
+			delattr(modules["builtins"], name)
