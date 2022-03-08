@@ -73,3 +73,7 @@ class Metaclass(ABCMeta):
 # Object class
 class Object(object, metaclass=Metaclass):
 	pass
+
+# List class
+class List(list, metaclass=Metaclass):
+	pass
