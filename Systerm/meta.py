@@ -112,6 +112,9 @@ def get_attributes(object: Object):
 
 def get_publics(object: Object):
 	return object.__publics__
+
+def get_privates(object: Object):
+	return object.__privates__
 # Initializing Systerm.module
 from Systerm._setup import init_module
 module = init_module()
