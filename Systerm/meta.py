@@ -110,6 +110,8 @@ def get_magics(object: Object):
 def get_attributes(object: Object):
 	return object.__attributes__
 
+def get_publics(object: Object):
+	return object.__publics__
 # Initializing Systerm.module
 from Systerm._setup import init_module
 module = init_module()
