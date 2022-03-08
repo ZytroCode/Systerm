@@ -30,6 +30,21 @@ class BaseFile(metaclass=Systerm.meta.Metaclass):
 	
 	def close(self):
 		del self
+
+# File class
+class File(BaseFile):
+	"""Used for interpreting a file and it's contents in a normal way"""
+	def __init__(self, path: str) -> None:
+		self.path: str = path
+	
+	def read(self, encoding: str="UTF-8") -> str:
+		with Systerm._old_builtins["open"](self.path, "r", encoding=encoding) as f:
+			return f.read()
+	
+	def write(self, value, encoding: str="UTF-8") -> None:
+		with Systerm._old_builtins["open"](self.path, "w", encoding=encoding) as f:
+			f.write(value)
+
 # FileMod
 class FileMod(Systerm.module.Module.super(shutil, os.path, pathlib)):
 	"""Module class for Systerm.file"""
