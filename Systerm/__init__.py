@@ -29,8 +29,6 @@ from Systerm.console import Logger
 from Systerm.version import Version
 
 # SystermMod
-@module.add(__name__)
-@instance.super(modules[__name__])
 class SystermMod(Module):
 	"""Module class for Systerm"""
 	__version__: version.Version = version
