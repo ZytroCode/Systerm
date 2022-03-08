@@ -69,3 +69,7 @@ class Metaclass(ABCMeta):
 		
 		# Adds attributes to namespace
 		self.__namespace__[name] = value
+
+# Object class
+class Object(object, metaclass=Metaclass):
+	pass
