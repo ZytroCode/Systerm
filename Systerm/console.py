@@ -1,9 +1,10 @@
 """Console is used for interpreting the stream"""
 import Systerm
+import builtins
 import sys
 import os
 
-from typing import Any
+from copy import deepcopy
 
 @Systerm.module.add(__name__)
 class ConsoleMod(Systerm.Module):
