@@ -52,7 +52,7 @@ class SystermMod(Module):
 
 	def get_installed(self) -> bool:
 		"""Returns True if Systerm is installed in runtime"""
-		return builtins.systerm_installed
+		return bool(getattr(modules["builtins"], "__systerm__", False))
 
 	def install(self) -> None:
 		"""Installing the Systerm module by overriding the python's builtins module"""
