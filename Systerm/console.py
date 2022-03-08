@@ -22,14 +22,16 @@ formats: dict = dict(
 class BaseLogger(object):
 	"""Low level logging"""
 	
-	def flush(self) -> None:
-		"""Forces to flush the buffer"""
-		sys.stdout.flush()
+	def __init__(self, format: str=formats["basic"]) -> None:
+		self.format = format
+
+	def log(self, **keys):
+		"""Logs values to the stream"""
+		print(self.format % keys)
 	
-	def send(self, value: object) -> None:
-		"""More like print but simpler"""
-		self.write(value)
-		self.flush()
+	def listen(self, **keys):
+		"""Listens for an input in the stream"""
+		return input(self.format % keys)
 	
 	def scan(self, prompt: Any) -> str:
 		"""More like input but simpler"""
