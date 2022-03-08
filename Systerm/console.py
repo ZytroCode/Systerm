@@ -6,12 +6,6 @@ import os
 
 from copy import deepcopy
 
-@Systerm.module.add(__name__)
-class ConsoleMod(Systerm.Module):
-	"""Module class for Systerm.console"""
-	def write(self, value: object) -> None:
-		"""Writes a value to the stream"""
-		sys.stdout.write(str(value))
 # Log formats
 formats: dict = dict(
 	Systerm = "[%(name)s] %(msg)s",
@@ -54,6 +48,13 @@ class Logger(BaseLogger):
 		keys = deepcopy(self.keys)
 		keys["msg"] = msg
 		return input(self.format % keys)
+
+# ConsoleMod
+class ConsoleMod(Systerm.module.Module):
+	"""Module class for Systerm.console"""
+	send = write = print = builtins.print
+	scan = input = builtins.input
+
 	def call(self, command: str) -> int:
 		"""Execute a command in a subshell"""
 		return os.system(command)
