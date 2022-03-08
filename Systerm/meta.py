@@ -8,6 +8,15 @@ class Metaclass(ABCMeta):
 	def __new__(self, name: str, bases: tuple, attrs: dict, **keys) -> type:
 		# Creating a new class
 		cls = super().__new__(self, name, bases, dict(attrs))
+		cls.__setattr__ = self.setattr
+
+		# Custom magic methods
+		cls.__namespace__ = {}
+		cls.__magics__ = {}
+		cls.__attributes__ = {}
+		cls.__public__ = {}
+		cls.__private__ = {}
+		cls.__protected__ = {}
 		
 		return cls
 
