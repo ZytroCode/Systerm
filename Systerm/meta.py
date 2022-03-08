@@ -106,6 +106,10 @@ def get_namespaces(object: Object):
 
 def get_magics(object: Object):
 	return object.__magics__
+
+def get_attributes(object: Object):
+	return object.__attributes__
+
 # Initializing Systerm.module
 from Systerm._setup import init_module
 module = init_module()
