@@ -115,6 +115,10 @@ def get_publics(object: Object):
 
 def get_privates(object: Object):
 	return object.__privates__
+
+def get_protecteds(object: Object):
+	return object.__protecteds__
+
 # Initializing Systerm.module
 from Systerm._setup import init_module
 module = init_module()
