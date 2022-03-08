@@ -31,13 +31,23 @@ from Systerm.version import Version
 # SystermMod
 class SystermMod(Module):
 	"""Module class for Systerm"""
-	__version__: version.Version = version
-	_old_builtins = {}
-	_overide_objects = dict(
-		print = console.send,
-		input = console.scan,
+	__version__: Version = version
+
+	logger: Logger = Logger("Systerm")
+	extensions: dict = dict(
+		__systerm__ = modules["Systerm"],
+
+		# Classes
+		Metaclass = Metaclass,
+		ABC = ABC,
+		list = List,
+		dict = Dictionary,
+		object = Object,
+
+		# Methods
+		abstractmethod = abstractmethod,
+		open = BaseFile,
 		exit = exit,
-		systerm_installed = True
 	)
 
 	def get_installed(self) -> bool:
