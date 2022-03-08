@@ -103,6 +103,9 @@ ABC = Metaclass(ABC.__name__, ABC.__bases__, {name: getattr(ABC, name) for name 
 
 def get_namespaces(object: Object):
 	return object.__namespaces__
+
+def get_magics(object: Object):
+	return object.__magics__
 # Initializing Systerm.module
 from Systerm._setup import init_module
 module = init_module()
