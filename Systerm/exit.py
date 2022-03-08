@@ -4,9 +4,7 @@ import sys
 import atexit
 
 # ExitMod
-@Systerm.module.add(__name__)
-@Systerm.instance.super(atexit)
-class ExitMod(Systerm.Module):
+class ExitMod(Systerm.module.Module.super(atexit).__class__):
 	"""Module class for Systerm.Exit"""
 	def exit(self, msg=None):
 		sys.exit(msg)
