@@ -13,6 +13,7 @@ class ExitMod(Systerm.module.Module.super(atexit)):
 		sys.exit(msg)
 	
 	@atexit.register
+	@staticmethod
 	def _() -> None:
 		if Systerm.get_installed():
 			Systerm.uninstall()
