@@ -1,25 +1,12 @@
-"""This module is a copy of the python's time module."""
-import Systerm
-import time
+"""A duplicate of the original python's random module"""
 import datetime as date
+import time
 
-# TimeMod
+import Systerm
+
+# TimeMod class
 class TimeMod(Systerm.module.Module.super(date, time)):
-	
-	"""Module class for Systerm.time."""
-	def get(self) -> float:
-		"""
-		Return the current time in seconds since the Epoch.
-		Fractions of a second may be present if the system clock provides them.
-		"""
-		return self.time()
-	
-	def __call__(self) -> float:
-		"""
-		Return the current time in seconds since the Epoch.
-		Fractions of a second may be present if the system clock provides them.
-		"""
-		return self.time()
+	__call__ = get = lambda self:self.time()
 
 del time
 Systerm.module.modules[__name__].__class__ = TimeMod

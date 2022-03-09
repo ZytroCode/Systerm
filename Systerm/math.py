@@ -2,9 +2,8 @@
 import Systerm
 import math
 
-# MathMod
+# MathMod class
 class MathMod(Systerm.module.Module.super(math)):
-	
-	"""Module class for Systerm.math."""
+	pass
 
 Systerm.module.modules[__name__].__class__ = MathMod

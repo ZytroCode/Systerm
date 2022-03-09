@@ -1,17 +1,23 @@
 """Meta is a module contains objects that will customize the behavior of python."""
-import Systerm
-import sys
-
-from abc import ABC, ABCMeta
+from abc import ABC
+from abc import ABCMeta
 from abc import abstractmethod
-from functools import wraps
 from typing import Callable
+
+import Systerm
 
 # Metaclass
 class Metaclass(ABCMeta):
-
 	"""A metaclass to customize the behavior of all classes."""
+
 	def __new__(self, name: str, bases: tuple, attrs: dict, **keys) -> type:
+		"""The static constructor for the Metaclass
+		
+		Parameters:
+			name - str:		The name of the class
+			bases - tuple:	A tuple of classes to be inherited
+			attrs - dict:	A dictionary of attributes of the class
+		"""
 		# Creating a new class
 		cls = super().__new__(self, name, bases, dict(attrs))
 		cls.__setattr__ = self.setattr
@@ -86,8 +92,7 @@ class List(list, metaclass=Metaclass):
 
 # Dictionary class
 class Dictionary(dict, metaclass=Metaclass):
-
-	"""Replacement for the python's builtin dict."""
+	"""A duplicate of the python's dict class"""
 	def __getattr__(self, name: str) -> None:
 		try:
 			return self[name]
@@ -104,21 +109,27 @@ class Dictionary(dict, metaclass=Metaclass):
 ABC = Metaclass(ABC.__name__, ABC.__bases__, {name: getattr(ABC, name) for name in dir(ABC)})
 
 def get_namespaces(object: Object):
+	"""Gets the namespaces of an object"""
 	return object.__namespaces__
 
 def get_magics(object: Object):
+	"""Gets the magic methods of an object"""
 	return object.__magics__
 
 def get_attributes(object: Object):
+	"""Gets the attributes of an object"""
 	return object.__attributes__
 
 def get_publics(object: Object):
+	"""Gets the public namespaces of an object"""
 	return object.__publics__
 
 def get_privates(object: Object):
+	"""Gets the private namespaces of an object"""
 	return object.__privates__
 
 def get_protecteds(object: Object):
+	"""Gets the protected namespaces of an object"""
 	return object.__protecteds__
 
 # Initializing Systerm.module
@@ -127,7 +138,6 @@ module = init_module()
 
 # MetaMod class
 class MetaMod(module.Module):
-	
-	"""MetaMod class will handle the behavior of Systerm.meta."""
+	pass
 
 module.modules[__name__].__class__ = MetaMod

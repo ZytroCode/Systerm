@@ -1,8 +1,11 @@
-"""Module is used for optimizing python modules."""
-import Systerm
+"""Used for optimizing python modules."""
 import sys
+from typing import Any
 
+import Systerm
 from Systerm import _setup
+
+# Initializing Systerm.meta
 meta = _setup.init_meta()
 
 # Modules
@@ -10,16 +13,28 @@ modules: dict = sys.modules
 
 # Module class
 class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
-
-	"""Module class is used for creating a python module."""
+	"""Creates a new python module."""
 	def __init__(self, name: str) -> None:
+		"""The constructor for the Module class
+		
+		Parameters:
+			name - str:	The name of the module
+		"""
 		super().__init__(name)
 		for attr in dir(self):
 			if name in self.__namespaces__:
 				setattr(self, attr, getattr(self, attr))
+
+	def __dir__(self) -> list:
+		return self.__namespaces__
 	
 	@staticmethod
-	def super(*instances):
+	def super(*instances: Any):
+		"""Creates a new class that inherits instances
+		
+		Parameters:
+			*instances - Any:	The instances to be inherit
+		"""
 		cls = meta.Metaclass("_", (Module,), dict())
 
 		for instance in instances:
@@ -28,10 +43,8 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 		
 		return cls
 
-	def __dir__(self) -> list:
-		return self.__namespaces__
-
-# ModuleMod
+# ModuleMod class
 class ModuleMod(Module):
-	
-	"""Module class for Systerm.module."""
+	pass
+
+modules[__name__].__class__ = ModuleMod

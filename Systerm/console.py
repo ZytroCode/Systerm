@@ -1,9 +1,9 @@
 """Console is used for interpreting the stream."""
-import Systerm
 import builtins
 import os
+from typing import Any, Callable, Optional, Union
 
-from copy import deepcopy
+import Systerm
 
 # Log formats
 formats: dict = dict(
@@ -11,49 +11,47 @@ formats: dict = dict(
 	basic = "%(msg)s",
 )
 
-# BaseLogger class
-class BaseLogger(object):
-	"""Low level logging."""
-	def __init__(self, format: str=formats["basic"]) -> None:
-		self.format = format
-
-	def log(self, **keys):
-		"""Logs values to the stream."""
-		print(self.format % keys)
-	
-	def listen(self, **keys):
-		"""Listens for an input in the stream."""
-		return input(self.format % keys)
-
 # Logger class
-class Logger(BaseLogger):
-	"""The main logging class for Systerm."""
-	def __init__(self, name: str, format: str=formats["Systerm"], **keys) -> None:
-		self.name = name
-		self.format = format
-		self.keys = keys
-		self.keys["name"] = name
+class Logger(object):
+	"""
+	Creates a logger object that logs values and listens for inputs in the stream.
 
-	def log(self, msg: str) -> None:
-		"""Logs a message to the stream."""
-		keys = deepcopy(self.keys)
-		keys["msg"] = msg
-		print(self.format % keys)
-	
-	def listen(self, msg: str) -> str:
-		"""Listens for an input in the stream."""
-		keys = deepcopy(self.keys)
-		keys["msg"] = msg
-		return input(self.format % keys)
+	Attributes:
+		format - str:	The format of the log and the listen method
 
-# ConsoleMod
+	Methods:
+		log(**values):		Logs values in the stream
+		listen(**values):	Listens for an input in the stream
+	"""
+	def __init__(self, format: Optional[str]=formats["basic"]) -> None:
+		"""The constructor for the Logger class.
+
+		Parameters:
+			format - Optional[str]:	The format of the log and the listen method
+		"""
+		self.format: str = format
+
+	def log(self, **values: Optional[Any]) -> None:
+		"""Logs values in the stream.
+		
+		Parameters:
+			**values - Optional[Any]:	The values to be log in the stream
+		"""
+		print(self.format % values)
+
+	def listen(self, **values: Optional[Any]) -> Any:
+		"""Listens for an input in the stream.
+		
+		Parameters:
+			**values - Optional[Any]:	The values to be ask in the stream
+		"""
+		return input(self.format % values)
+
+# ConsoleMod class
 class ConsoleMod(Systerm.module.Module):
-	"""Module class for Systerm.console."""
-	send = write = print = builtins.print
-	scan = input = builtins.input
+	send = write = print =	builtins.print
+	scan = input = listen =	builtins.input
 
-	def call(self, command: str) -> int:
-		"""Execute a command in a subshell."""
-		return os.system(command)
+	call: Callable[[Union[str, bytes]], int] = lambda command:os.system(command)
 
 Systerm.module.modules[__name__].__class__ = ConsoleMod

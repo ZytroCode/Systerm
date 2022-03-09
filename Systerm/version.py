@@ -1,40 +1,42 @@
-"""Version contains the version of Systerm
-This can also be used to create a version of something of yours"""
+"""Version is a module that manages a version of something"""
 import Systerm
 
-# VersionMod
+# Version class
+class Version(object):
+	"""Class for an object to store a version.
+	
+	Attributes:
+		version - str:	The version of something
+	"""
+	__str__ = lambda self:self.version
+	__int__ = lambda self:int(self.version.replace(".", ""))
+
+	def __init__(self, version: str) -> None:
+		"""The constructor for the Version class"""
+		self.version: str = version
+
+	def __iter__(self) -> iter:
+		for i in self.version.split("."):
+			yield i
+	
+	@property
+	def major(self) -> str:
+		return list(self)[0]
+
+	@property
+	def minor(self) -> str:
+		return list(self)[1]
+
+	@property
+	def micro(self) -> str:
+		return list(self)[2]
+
+# VersionMod class
 class VersionMod(Systerm.module.Module):
-	"""Module class for Systerm.version"""
-	# Version
-	class Version(object):
-		"""Class for an object to store a version"""
-		def __init__(self, version: str) -> None:
-			self.version: str = version
-
-		def __str__(self) -> str:
-			return self.version
-
-		def __int__(self) -> int:
-			return int(self.version.replace(".", ""))
-
-		def __iter__(self) -> iter:
-			for i in self.version.split("."):
-				yield i
-
-		@property
-		def major(self) -> str:
-			return list(self)[0]
-
-		@property
-		def minor(self) -> str:
-			return list(self)[1]
-
-		@property
-		def micro(self) -> str:
-			return list(self)[2]
-
-	version: str = Version("0.3.0")
-	__version__: str = Version("0.3.0")
+	__version__ = version = Version("0.3.0")
+	__str__ = lambda self:self.version.__str__
+	__int__ = lambda self:self.version.__int__
+	__iter__ = lambda self:self.version.__iter__
 
 	def __getattr__(self, name: str) -> object:
 		try:
@@ -44,14 +46,5 @@ class VersionMod(Systerm.module.Module):
 				return getattr(self.version, name)
 			except AttributeError:
 				raise e
-
-	def __str__(self) -> str:
-		return self.version.__str__()
-
-	def __int__(self) -> int:
-		return self.version.__int__()
-
-	def __iter__(self) -> iter:
-		return self.version.__iter__()
 
 Systerm.module.modules[__name__].__class__ = VersionMod
