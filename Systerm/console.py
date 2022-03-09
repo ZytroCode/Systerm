@@ -14,6 +14,7 @@ formats: dict = dict(
 
 # BaseLogger class
 class BaseLogger(object):
+	
 	"""Low level logging."""
 	def __init__(self, format: str=formats["basic"]) -> None:
 		self.format = format
