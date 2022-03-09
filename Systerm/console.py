@@ -1,7 +1,6 @@
 """Console is used for interpreting the stream."""
 import Systerm
 import builtins
-import sys
 import os
 
 from copy import deepcopy
@@ -14,7 +13,6 @@ formats: dict = dict(
 
 # BaseLogger class
 class BaseLogger(object):
-	
 	"""Low level logging."""
 	def __init__(self, format: str=formats["basic"]) -> None:
 		self.format = format
@@ -29,7 +27,6 @@ class BaseLogger(object):
 
 # Logger class
 class Logger(BaseLogger):
-
 	"""The main logging class for Systerm."""
 	def __init__(self, name: str, format: str=formats["Systerm"], **keys) -> None:
 		self.name = name
@@ -51,7 +48,6 @@ class Logger(BaseLogger):
 
 # ConsoleMod
 class ConsoleMod(Systerm.module.Module):
-
 	"""Module class for Systerm.console."""
 	send = write = print = builtins.print
 	scan = input = builtins.input
