@@ -1,4 +1,4 @@
-"""Exit is a module from Systerm that manages everything on exit"""
+"""Exit is a module from Systerm that manages everything on exit."""
 import Systerm
 import sys
 import atexit
@@ -6,7 +6,7 @@ import atexit
 # ExitMod
 class ExitMod(Systerm.module.Module.super(atexit)):
 
-	"""Module class for Systerm.Exit"""
+	"""Module class for Systerm.Exit."""
 	def __call__(self, msg=None):
 		self.exit(msg)
 

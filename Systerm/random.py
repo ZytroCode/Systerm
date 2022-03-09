@@ -1,11 +1,11 @@
-"""This module is a copy of the python's random module"""
+"""This module is a copy of the python's random module."""
 import Systerm
 import random
 
 # RandomMod
 class RandomMod(Systerm.module.Module.super(random)):
 	
-	"""Module class for Systerm.random"""
+	"""Module class for Systerm.random."""
 	int = random.randint
 	float = random.uniform
 	bool = lambda self:self.random() < 0.5

@@ -1,4 +1,4 @@
-"""Systerm is a multipurpose python library"""
+"""Systerm is a multipurpose python library."""
 import sys
 
 sys.path.append("..")
@@ -30,8 +30,8 @@ from Systerm.version import Version
 
 # SystermMod
 class SystermMod(Module):
-	
-	"""Module class for Systerm"""
+
+	"""Module class for Systerm."""
 	__version__: Version = version
 
 	logger: Logger = Logger("Systerm")
@@ -52,16 +52,16 @@ class SystermMod(Module):
 	)
 
 	def get_installed(self) -> bool:
-		"""Returns True if Systerm is installed in runtime"""
+		"""Returns True if Systerm is installed in runtime."""
 		return bool(getattr(modules["builtins"], "__systerm__", False))
 
 	def install(self) -> None:
-		"""Installing the Systerm module by overriding the python's builtins module"""
+		"""Installing the Systerm module by overriding the python's builtins module."""
 		for index, value in self.extensions.items():
 			setattr(modules["builtins"], index, value)
 	
 	def uninstall(self) -> None:
-		"""Undoing the installation of Systerm"""
+		"""Undoing the installation of Systerm."""
 		for name, _ in self.extensions.items():
 			delattr(modules["builtins"], name)
 

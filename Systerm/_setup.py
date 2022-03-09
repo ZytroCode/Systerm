@@ -1,4 +1,4 @@
-"""Used to avoid circular import"""
+"""Used to avoid circular import."""
 def init_meta():
 	from Systerm import meta
 	return meta

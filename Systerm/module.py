@@ -1,4 +1,4 @@
-"""Module is used for optimizing python modules"""
+"""Module is used for optimizing python modules."""
 import Systerm
 import sys
 
@@ -11,7 +11,7 @@ modules: dict = sys.modules
 # Module class
 class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 
-	"""Module class is used for creating a python module"""
+	"""Module class is used for creating a python module."""
 	def __init__(self, name: str) -> None:
 		super().__init__(name)
 		for attr in dir(self):
@@ -34,4 +34,4 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 # ModuleMod
 class ModuleMod(Module):
 	
-	"""Module class for Systerm.module"""
+	"""Module class for Systerm.module."""
