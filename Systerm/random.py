@@ -4,6 +4,7 @@ import random
 
 # RandomMod
 class RandomMod(Systerm.module.Module.super(random)):
+	
 	"""Module class for Systerm.random"""
 	int = random.randint
 	float = random.uniform

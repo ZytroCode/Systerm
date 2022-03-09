@@ -8,6 +8,7 @@ from typing import Optional, Union, NewType
 
 # BaseFile class
 class BaseFile(metaclass=Systerm.meta.Metaclass):
+	
 	"""Used for interpreting a file and it's contents"""
 	def __init__(self, path: str, mode: Optional[Union[str, type]]="file") -> None:
 		def set_mode(mode):
@@ -33,6 +34,7 @@ class BaseFile(metaclass=Systerm.meta.Metaclass):
 
 # File class
 class File(BaseFile):
+
 	"""Used for interpreting a file and it's contents in a normal way"""
 	def __init__(self, path: str) -> None:
 		self.path: str = path
@@ -47,6 +49,7 @@ class File(BaseFile):
 
 # FileMod
 class FileMod(Systerm.module.Module.super(shutil, os.path, pathlib)):
+
 	"""Module class for Systerm.file"""
 
 Systerm.module.modules[__name__].__class__ = FileMod

@@ -10,6 +10,7 @@ modules: dict = sys.modules
 
 # Module class
 class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
+
 	"""Module class is used for creating a python module"""
 	def __init__(self, name: str) -> None:
 		super().__init__(name)
@@ -32,4 +33,5 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 
 # ModuleMod
 class ModuleMod(Module):
+	
 	"""Module class for Systerm.module"""

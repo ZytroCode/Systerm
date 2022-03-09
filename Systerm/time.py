@@ -5,6 +5,7 @@ import datetime as date
 
 # TimeMod
 class TimeMod(Systerm.module.Module.super(date, time)):
+	
 	"""Module class for Systerm.time"""
 	def get(self) -> float:
 		"""

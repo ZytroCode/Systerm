@@ -30,6 +30,7 @@ from Systerm.version import Version
 
 # SystermMod
 class SystermMod(Module):
+	
 	"""Module class for Systerm"""
 	__version__: Version = version
 

@@ -5,10 +5,12 @@ import atexit
 
 # ExitMod
 class ExitMod(Systerm.module.Module.super(atexit)):
+
 	"""Module class for Systerm.Exit"""
 	def __call__(self, msg=None):
 		self.exit(msg)
 
+	@staticmethod
 	def exit(self, msg=None):
 		sys.exit(msg)
 	

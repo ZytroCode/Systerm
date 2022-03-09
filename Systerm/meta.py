@@ -9,6 +9,7 @@ from typing import Callable
 
 # Metaclass
 class Metaclass(ABCMeta):
+
 	"""A metaclass to customize the behavior of all classes"""
 	def __new__(self, name: str, bases: tuple, attrs: dict, **keys) -> type:
 		# Creating a new class
@@ -85,6 +86,7 @@ class List(list, metaclass=Metaclass):
 
 # Dictionary class
 class Dictionary(dict, metaclass=Metaclass):
+
 	"""Replacement for the python's builtin dict"""
 	def __getattr__(self, name: str) -> None:
 		try:
@@ -125,6 +127,7 @@ module = init_module()
 
 # MetaMod class
 class MetaMod(module.Module):
+	
 	"""MetaMod class will handle the behavior of Systerm.meta"""
 
 module.modules[__name__].__class__ = MetaMod
