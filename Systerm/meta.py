@@ -13,7 +13,7 @@ class Metaclass(ABCMeta):
 
 	def __new__(self, name: str, bases: tuple, attrs: dict, **keys: Any) -> type:
 		"""The static constructor for the Metaclass.
-		
+
 		Parameters:
 			name - str:		The name of the class
 			bases - tuple:	A tuple of classes to be inherited
@@ -44,42 +44,42 @@ class Metaclass(ABCMeta):
 				# Adds attributes to __privates__
 				if name.startswith("__"):
 					cls.__privates__[name] = value
-				
+
 				# Adds attributes to __protecteds__
 				elif name.startswith("_"):
 					cls.__protecteds__[name] = value
 				# Adds attributes to __publics__
 				else:
 					cls.__publics__[name] = value
-				
+
 				cls.__attributes__[name] = value
-			
+
 			# Adds attributes to namespace
 			cls.__namespaces__[name] = value
-		
+
 		return cls
 
 	def setattr(self, name: str, value: object) -> None:
 		# Adds attributes to __magics__
 		if name.startswith("__") and name.endswith("__"):
 			self.__magics__[name] = value
-		
+
 		# Adds attributes to other namespace
 		else:
 			# Adds attributes to __privates__
 			if name.startswith("__"):
 				self.__privates__[name] = value
-			
+
 			# Adds attributes to __protecteds__
 			elif name.startswith("_"):
 				self.__protecteds__[name] = value
-			
+
 			# Adds attributes to __publics__
 			else:
 				self.__publics__[name] = value
-			
+
 			self.__attributes__[name] = value
-		
+
 		# Adds attributes to namespace
 		self.__namespaces__[name] = value
 
@@ -101,7 +101,7 @@ class Dictionary(dict, metaclass=Metaclass):
 				return super().__getattr__(name)
 			except AttributeError:
 				raise e
-	
+
 	def __setattr__(self, name: str, value: object) -> None:
 		self[name] = value
 

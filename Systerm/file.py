@@ -10,13 +10,13 @@ import Systerm
 # BaseFile class
 class BaseFile(metaclass=Systerm.meta.Metaclass):
 	"""Used for interpreting a file and its contents.
-	
+
 	The attributes and methods of this class depends on its parameter mode.
 	"""
 
 	def __init__(self, path: str, mode: Optional[Union[str, type]]="file") -> None:
 		"""The constructor for the BaseFile class.
-		
+
 		Parameters:
 			path - str:			The path of the file
 			mode - str | type:	The type of mode to open the file
@@ -46,7 +46,7 @@ class BaseFile(metaclass=Systerm.meta.Metaclass):
 # File class
 class File(BaseFile):
 	"""The normal mode to open a file.
-	
+
 	Attributes:
 		path - str:	The path of the file
 
@@ -56,7 +56,7 @@ class File(BaseFile):
 	"""
 	def __init__(self, path: str) -> None:
 		""""The constructor for the File class.
-		
+
 		Parameters:
 			path - str: The path of the file
 		"""
@@ -64,7 +64,7 @@ class File(BaseFile):
 
 	def read(self, encoding: Optional[str]="UTF-8") -> str:
 		"""Reads the contents of the file.
-		
+
 		Parameters:
 			encoding - Optional[str]:	The encoding format to read the file
 		"""
@@ -73,7 +73,7 @@ class File(BaseFile):
 
 	def write(self, value, encoding: str="UTF-8") -> None:
 		"""Rewrites the contents of the file.
-		
+
 		Parameters:
 			encoding - Optional[str]:	The encoding format to rewrite the file
 		"""

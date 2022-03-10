@@ -33,7 +33,7 @@ class Logger(object):
 
 	def log(self, **values: Optional[Any]) -> None:
 		"""Logs values in the stream.
-		
+
 		Parameters:
 			**values - Optional[Any]:	The values to be log in the stream
 		"""
@@ -41,7 +41,7 @@ class Logger(object):
 
 	def listen(self, **values: Optional[Any]) -> Any:
 		"""Listens for an input in the stream.
-		
+
 		Parameters:
 			**values - Optional[Any]:	The values to be ask in the stream
 		"""

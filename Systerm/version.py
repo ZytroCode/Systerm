@@ -4,7 +4,7 @@ import Systerm
 # Version class
 class Version(object):
 	"""Class for an object to store a version.
-	
+
 	Attributes:
 		version - str:	The version of something
 	"""
@@ -13,7 +13,7 @@ class Version(object):
 
 	def __init__(self, version: str) -> None:
 		"""The constructor for the Version class.
-		
+
 		Parameters:
 			version - str:	The version of something
 		"""
@@ -22,7 +22,7 @@ class Version(object):
 	def __iter__(self) -> iter:
 		for i in self.version.split("."):
 			yield i
-	
+
 	@property
 	def major(self) -> str:
 		return list(self)[0]

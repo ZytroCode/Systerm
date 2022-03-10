@@ -16,7 +16,7 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 	"""Creates a new python module."""
 	def __init__(self, name: str) -> None:
 		"""The constructor for the Module class.
-		
+
 		Parameters:
 			name - str:	The name of the module
 		"""
@@ -27,11 +27,11 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 
 	def __dir__(self) -> list:
 		return self.__namespaces__
-	
+
 	@staticmethod
 	def super(*instances: Any):
 		"""Creates a new class that inherits instances.
-		
+
 		Parameters:
 			*instances - Any:	The instances to be inherit
 		"""
@@ -40,7 +40,7 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 		for instance in instances:
 			for name in dir(instance):
 				setattr(cls, name, getattr(instance, name))
-		
+
 		return cls
 
 # ModuleMod class
