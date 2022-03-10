@@ -21,7 +21,7 @@ CLASSIFIERS = [
 # Metadata
 METADATA = dict(
 	name =							"Systerm",
-	version =						"0.3.0",
+	version =						"0.4.0",
 	description =					"A multipurpose python library",
 	long_description =				LONG_DESCRIPTION,
 	long_description_content_type =	"text/markdown",

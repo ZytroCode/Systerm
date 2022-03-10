@@ -29,6 +29,7 @@ from Systerm.meta import Object
 
 # SystermMod class
 class SystermMod(Module):
+	__version__ = version = "0.4.0"
 
 	logger: Logger = Logger("Systerm")
 	extensions: dict = dict(
