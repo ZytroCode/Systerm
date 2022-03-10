@@ -1,63 +1,50 @@
-"""Module is used for optimizing python modules"""
-import Systerm
+"""Used for optimizing python modules."""
 import sys
+from typing import Any
+
+import Systerm
+from Systerm import _setup
+
+# Initializing Systerm.meta
+meta = _setup.init_meta()
 
 # Modules
 modules: dict = sys.modules
 
 # Module class
-class Module(sys.modules[__name__].__class__):
-	"""Module class is used for creating a python module"""
-	_attrs: dict = {}
-	_hidden_prefixs: list = ["_"]
-	_hidden_items: list = []
-
+class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
+	"""Creates a new python module."""
 	def __init__(self, name: str) -> None:
+		"""The constructor for the Module class.
+
+		Parameters:
+			name - str:	The name of the module
+		"""
 		super().__init__(name)
 		for attr in dir(self):
-			if self._not_hidden(attr):
+			if name in self.__namespaces__:
 				setattr(self, attr, getattr(self, attr))
 
 	def __dir__(self) -> list:
-		return [attr for attr in dir(self.__class__) if self._not_hidden(attr)]
+		return self.__namespaces__
 
-	def _not_hidden(self, item) -> bool:
-		hidden = item in self._hidden_items
-		if hidden: return False
-		for prefix in self._hidden_prefixs:
-			if item.startswith(prefix):
-				hidden = True
-				break
+	@staticmethod
+	def super(*instances: Any):
+		"""Creates a new class that inherits instances.
 
-		return not hidden
+		Parameters:
+			*instances - Any:	The instances to be inherit
+		"""
+		cls = meta.Metaclass("_", (Module,), dict())
 
-# Add function
-def add(*args) -> None:
-	"""Makes a module importable"""
-	error = Exception("add() unknown error")
+		for instance in instances:
+			for name in dir(instance):
+				setattr(cls, name, getattr(instance, name))
 
-	if len(args) == 2:
-		try:
-			sys.modules[args[1]].__class__ = args[0]
-			return args[0](args[1])
-		except TypeError as e:
-			print(e)
-			error = TypeError(f"add() takes 2 positional arguments but {len(args) + 1} were given")
-	elif len(args) == 1:
-		def wrapper(module):
-			sys.modules[args[0]].__class__ = module
-			return module
-		return wrapper
-	elif len(args) == 0:
-		error = TypeError(f"add() missing 2 required positional arguments: 'module', 'test'")
-	elif len(args) >= 3:
-		error = TypeError(f"add() takes 2 positional arguments but {len(args)} were given")
-	raise error
+		return cls
 
-# ModuleMod
-@add(__name__)
+# ModuleMod class
 class ModuleMod(Module):
-	"""Module class for Systerm.module"""
-	add = add
-	modules = modules
-	Module = Module
+	pass
+
+modules[__name__].__class__ = ModuleMod

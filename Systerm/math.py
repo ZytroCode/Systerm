@@ -1,11 +1,9 @@
-"""Mathematical module for Systerm"""
+"""Mathematical module for Systerm."""
 import Systerm
 import math
 
-# MathMod
-@Systerm.module.add(__name__)
-@Systerm.instance.super(math)
-class MathMod(Systerm.Module):
-	"""Module class for Systerm.math"""
+# MathMod class
+class MathMod(Systerm.module.Module.super(math)):
+	pass
 
-del math
+Systerm.module.modules[__name__].__class__ = MathMod
