@@ -1,4 +1,4 @@
-"""A duplicate of the original python's random module"""
+"""A duplicate of the original python's random module."""
 import random
 
 import Systerm

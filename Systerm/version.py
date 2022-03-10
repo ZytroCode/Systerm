@@ -12,7 +12,11 @@ class Version(object):
 	__int__ = lambda self:int(self.version.replace(".", ""))
 
 	def __init__(self, version: str) -> None:
-		"""The constructor for the Version class"""
+		"""The constructor for the Version class.
+		
+		Parameters:
+			version - str:	The version of something
+		"""
 		self.version: str = version
 
 	def __iter__(self) -> iter:

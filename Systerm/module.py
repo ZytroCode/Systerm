@@ -15,7 +15,7 @@ modules: dict = sys.modules
 class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 	"""Creates a new python module."""
 	def __init__(self, name: str) -> None:
-		"""The constructor for the Module class
+		"""The constructor for the Module class.
 		
 		Parameters:
 			name - str:	The name of the module
@@ -30,7 +30,7 @@ class Module(sys.modules[__name__].__class__, metaclass=meta.Metaclass):
 	
 	@staticmethod
 	def super(*instances: Any):
-		"""Creates a new class that inherits instances
+		"""Creates a new class that inherits instances.
 		
 		Parameters:
 			*instances - Any:	The instances to be inherit

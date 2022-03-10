@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/ZytroCode/Systerm.svg?style=for-the-badge)](LICENSE) [![Quality](https://img.shields.io/codacy/grade/fcac71cc3b0f4a42b4edceeb6c4bab75?style=for-the-badge)](QUALITY)
 
-Systerm is a multipurpose python library. Systerm is a powerful extension-like library to python. Systerm gives python much more flexibility and power. Systerm also makes it easier to deal with classes with its builtin Metaclass
+Systerm is a multipurpose python library. Systerm is a powerful extension-like library to python and gives python much more flexibility and power. Systerm also makes it easier to deal with classes with its builtin Metaclass
 
 ## Installation
 

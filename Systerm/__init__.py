@@ -1,35 +1,36 @@
-"""Systerm is a multipurpose python library."""
-import sys
+"""Systerm is a multipurpose python library.
 
+Systerm is a powerful extension-like library to python and gives python much more flexibility and power."""
+import sys
 sys.path.append("..")
 
 # Importing libraries in Systerm
 from Systerm import meta
 from Systerm import module
-from Systerm import exit
-from Systerm import version
+
 from Systerm import console
-from Systerm import time
+from Systerm import exit
+from Systerm import file
 from Systerm import math
 from Systerm import random
-from Systerm import file
+from Systerm import time
+from Systerm import version
 
-from Systerm.meta import Metaclass
 from Systerm.meta import ABC
-from Systerm.meta import Object
-from Systerm.meta import List
-from Systerm.meta import Dictionary
 from Systerm.meta import abstractmethod
+from Systerm.file import BaseFile
+from Systerm.meta import Dictionary
+from Systerm.file import File
+from Systerm.meta import List
+from Systerm.console import Logger
+from Systerm.meta import Metaclass
 from Systerm.module import Module
 from Systerm.module import modules
+from Systerm.meta import Object
 from Systerm.version import Version
-from Systerm.console import Logger
-from Systerm.file import BaseFile
-from Systerm.file import File
 
-# SystermMod
+# SystermMod class
 class SystermMod(Module):
-	"""Module class for Systerm."""
 	__version__: Version = version
 
 	logger: Logger = Logger("Systerm")
@@ -54,12 +55,12 @@ class SystermMod(Module):
 		return bool(getattr(modules["builtins"], "__systerm__", False))
 
 	def install(self) -> None:
-		"""Installing the Systerm module by overriding the python's builtins module."""
+		"""Installs Systerm on runtime."""
 		for index, value in self.extensions.items():
 			setattr(modules["builtins"], index, value)
 
 	def uninstall(self) -> None:
-		"""Undoing the installation of Systerm."""
+		"""Uninstalls Systerm on runtime."""
 		for name, _ in self.extensions.items():
 			delattr(modules["builtins"], name)
 
