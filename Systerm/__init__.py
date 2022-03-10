@@ -14,7 +14,6 @@ from Systerm import file
 from Systerm import math
 from Systerm import random
 from Systerm import time
-from Systerm import version
 
 from Systerm.meta import ABC
 from Systerm.meta import abstractmethod
@@ -27,11 +26,9 @@ from Systerm.meta import Metaclass
 from Systerm.module import Module
 from Systerm.module import modules
 from Systerm.meta import Object
-from Systerm.version import Version
 
 # SystermMod class
 class SystermMod(Module):
-	__version__: Version = version
 
 	logger: Logger = Logger("Systerm")
 	extensions: dict = dict(
@@ -58,10 +55,5 @@ class SystermMod(Module):
 		"""Installs Systerm on runtime."""
 		for index, value in self.extensions.items():
 			setattr(modules["builtins"], index, value)
-
-	def uninstall(self) -> None:
-		"""Uninstalls Systerm on runtime."""
-		for name, _ in self.extensions.items():
-			delattr(modules["builtins"], name)
 
 modules[__name__].__class__ = SystermMod
