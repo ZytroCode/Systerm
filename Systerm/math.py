@@ -4,6 +4,6 @@ import math
 
 # MathMod class
 class MathMod(Systerm.module.Module.super(math)):
-	pass
+    pass
 
 Systerm.module.modules[__name__].__class__ = MathMod

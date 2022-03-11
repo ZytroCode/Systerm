@@ -29,32 +29,32 @@ from Systerm.meta import Object
 
 # SystermMod class
 class SystermMod(Module):
-	__version__ = version = "0.4.0"
+    __version__ = version = "0.4.0"
 
-	logger: Logger = Logger("Systerm")
-	extensions: dict = dict(
-		__systerm__ = modules["Systerm"],
+    logger: Logger = Logger("Systerm")
+    extensions: dict = dict(
+        __systerm__ = modules["Systerm"],
 
-		# Classes
-		Metaclass = Metaclass,
-		ABC = ABC,
-		list = List,
-		dict = Dictionary,
-		object = Object,
+        # Classes
+        Metaclass = Metaclass,
+        ABC = ABC,
+        list = List,
+        dict = Dictionary,
+        object = Object,
 
-		# Methods
-		abstractmethod = abstractmethod,
-		open = BaseFile,
-		exit = exit,
-	)
+        # Methods
+        abstractmethod = abstractmethod,
+        open = BaseFile,
+        exit = exit,
+    )
 
-	def get_installed(self) -> bool:
-		"""Returns True if Systerm is installed in runtime."""
-		return bool(getattr(modules["builtins"], "__systerm__", False))
+    def get_installed(self) -> bool:
+        """Returns True if Systerm is installed in runtime."""
+        return bool(getattr(modules["builtins"], "__systerm__", False))
 
-	def install(self) -> None:
-		"""Installs Systerm on runtime."""
-		for index, value in self.extensions.items():
-			setattr(modules["builtins"], index, value)
+    def install(self) -> None:
+        """Installs Systerm on runtime."""
+        for index, value in self.extensions.items():
+            setattr(modules["builtins"], index, value)
 
 modules[__name__].__class__ = SystermMod
