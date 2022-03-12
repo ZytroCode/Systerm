@@ -1,9 +1,25 @@
 """Console is used for interpreting the stream."""
 import builtins
 import os
+import sys
 from typing import Any, Callable, Optional, Union
 
 import Systerm
+
+# Supports color function
+def supports_color() -> bool:
+	is_a_tty = hasattr(sys.stdout, "isatty") and sys.stdout.isatty()
+
+	return is_a_tty and (
+		sys.platform != "win32"
+        or "ANSICON" in os.environ
+        or
+        # Windows Terminal supports VT codes.
+        "WT_SESSION" in os.environ
+        or
+        # Microsoft Visual Studio Code's built-in terminal supports colors.
+        os.environ.get("TERM_PROGRAM") == "vscode"
+    )
 
 # Log formats
 formats: dict = dict(
