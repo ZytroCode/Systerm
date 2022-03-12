@@ -4,4 +4,7 @@ repo_name: GitHub
 site_author: ZytroCode
 site_description: A multipurpose python library
 
+nav:
+  - Home: index.md
+
 theme: material
