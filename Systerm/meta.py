@@ -11,13 +11,14 @@ import Systerm
 class Metaclass(ABCMeta):
     """A metaclass to customize the behavior of all classes."""
 
-    def __new__(self, name: str, bases: tuple, attrs: dict, **keys: Any) -> type:
+    def __new__(self, name: str, bases: tuple[type, ...], attrs: dict[str, Any], **keys: Any) -> type:
         """The static constructor for the Metaclass.
 
         Parameters:
-            name - str:		The name of the class
-            bases - tuple:	A tuple of classes to be inherited
-            attrs - dict:	A dictionary of attributes of the class
+            name - str                  The name of the class
+            bases - tuple[type, ...]    A tuple of classes to inherit
+            attrs - dict[str, Any]      A dictionary of attributes
+            **keys - Any                Keyword arguments to pass in
         """
         # Creating a new class
         cls = super().__new__(self, name, bases, dict(attrs), **keys)
@@ -108,27 +109,27 @@ class Dictionary(dict, metaclass=Metaclass):
 # Recreating ABC
 ABC = Metaclass(ABC.__name__, ABC.__bases__, {name: getattr(ABC, name) for name in dir(ABC)})
 
-def get_namespaces(object: Object):
+def get_namespaces(object: Object) -> Dictionary:
     """Gets the namespaces of an object."""
     return object.__namespaces__
 
-def get_magics(object: Object):
+def get_magics(object: Object) -> Dictionary:
     """Gets the magic methods of an object."""
     return object.__magics__
 
-def get_attributes(object: Object):
+def get_attributes(object: Object) -> Dictionary:
     """Gets the attributes of an object."""
     return object.__attributes__
 
-def get_publics(object: Object):
+def get_publics(object: Object) -> Dictionary:
     """Gets the public namespaces of an object."""
     return object.__publics__
 
-def get_privates(object: Object):
+def get_privates(object: Object) -> Dictionary:
     """Gets the private namespaces of an object."""
     return object.__privates__
 
-def get_protecteds(object: Object):
+def get_protecteds(object: Object) -> Dictionary:
     """Gets the protected namespaces of an object."""
     return object.__protecteds__
 
