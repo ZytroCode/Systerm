@@ -33,8 +33,6 @@ class SystermMod(Module):
 
     logger: Logger = Logger(console.formats["Systerm"])
     extensions: dict = dict(
-        __systerm__ = modules["Systerm"],
-
         # Classes
         Metaclass = Metaclass,
         ABC = ABC,
