@@ -3,3 +3,5 @@ repo_url: https://github.com/ZytroCode/Systerm/
 repo_name: GitHub
 site_author: ZytroCode
 site_description: A multipurpose python library
+
+theme: material
