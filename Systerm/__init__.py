@@ -50,7 +50,7 @@ class SystermMod(Module):
         """Returns True if Systerm is installed in runtime."""
         return bool(getattr(modules["builtins"], "__systerm__", False))
 
-    def install(self) -> None:
+    def install(self, ext: bool=False, warn: bool=True) -> None:
         """Installs Systerm on runtime."""
         for index, value in self.extensions.items():
             setattr(modules["builtins"], index, value)
