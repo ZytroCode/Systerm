@@ -31,7 +31,7 @@ from Systerm.meta import Object
 class SystermMod(Module):
     __version__ = version = "0.4.0"
 
-    logger: Logger = Logger("Systerm")
+    logger: Logger = Logger(console.formats["Systerm"])
     extensions: dict = dict(
         __systerm__ = modules["Systerm"],
 
