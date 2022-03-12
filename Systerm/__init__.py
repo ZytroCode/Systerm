@@ -56,5 +56,8 @@ class SystermMod(Module):
         if ext:
             for index, value in self.extensions.items():
                 setattr(modules["builtins"], index, value)
+        if warn:
+            if not console.supports_color():
+                self.logger.log(name="Systerm", msg="Warning! Console doesn't supports color")
 
 modules[__name__].__class__ = SystermMod
