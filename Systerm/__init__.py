@@ -54,5 +54,6 @@ class SystermMod(Module):
         """Installs Systerm on runtime."""
         for index, value in self.extensions.items():
             setattr(modules["builtins"], index, value)
+        setattr(modules["builtins"], "__systerm__", modules[__name__])
 
 modules[__name__].__class__ = SystermMod
